@@ -3,8 +3,8 @@ T1
 
 - [x] : T1.1
 - [x] : T1.2
-- [ ] : T1.3 (WIP)
-- [ ] : T1.4 (WIP)
+- [X] : T1.3
+- [X] : T1.4
 
 May be worth restarting T1.3 and T1.4 as they are fairly convoluted at this point
 

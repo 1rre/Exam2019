@@ -2,7 +2,7 @@
 #include <iostream>
 
 Network flatten(const Network &parts);
-vector<Network> sort(const vector<Network> &x);
+vector<Network> sort(const Network &parts);
 
 Network R(float v)
 {
@@ -35,49 +35,14 @@ bool operator<(const Network &a, const Network &b){ //applied assuming both a an
 				return(a.type<b.type); //return whether a's type is less than b's - from readme this should match with the spec
 		}
 		else if(a.type==b.type){ //if a and b are both either series or parallel
-				vector<Network> sa;
-				for(Network sa0 : a.parts){
-						sa.push_back(sa0);
+				if(a.parts.size()>b.parts.size){
+						
 				}
-				sa=sort(sa);
-				vector<Network> sb;
-				for(Network sb0 : b.parts){
-						sb.push_back(sb0);
-				}
-				sb=sort(sb);
-				if(sa.size()>sb.size()){
-						for(int i = 0;i<sb.size();i++){
-								if(sa[i]<sb[i]){
-										return true;
-								}
-						}
-						if(a.type=='|'){
-								return false;
-						}
-						else if(a.type=='&'){
-								return true;
-						}
-				}
-				else if(sa.size()<sb.size()){
-						for(int i = 0;i<sa.size();i++){
-								if(sa[i]<sb[i]){
-										return true;
-								}
-						}
-						if(a.type=='|'){
-								return true;
-						}
-						else if(a.type=='&'){
-								return false;
-						}
+				else if(a.parts.size()<b.parts.size){
+						
 				}
 				else{ //if a and b have the same number of parts
-						for(int i = 0;i<sa.size();i++){
-								if(sa[i]<sb[i]){
-										return true;
-								}
-						}
-						return false;
+						
 				}
 		}
 }
