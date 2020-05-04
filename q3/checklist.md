@@ -8,7 +8,7 @@
 ##T2
 
 - [x] : T2.1 (passed test_network_io.cpp)
-- [ ] : T2.2
+- [x] : T2.2 (100 random test cases)
 
 ##T3
 - [ ] : T3.1

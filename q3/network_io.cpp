@@ -1,6 +1,8 @@
 #include "network.hpp"
+#include <ctime>
 
 string buildOutput(const Network &n);
+Network createSubNetwork();
 
 istream &operator>>(istream &src, Network &c)
 {
@@ -67,12 +69,57 @@ string buildOutput(const Network &n){
 		return outMessage; //return the built output
 }
 
+Network createSubNetwork(bool b){
+		Network rtn;
+		srand(time(nullptr));
+		int rnd;
+		if(b){
+				rnd = rand()%5;
+		}
+		else{
+				rnd = rand()%3;
+		}
+		switch(rnd){
+				case 0:{
+						rtn.type = 'R'; //set the type to resistor
+						rtn.value = rand()%5; //with value 1-5
+						break;
+				}
+				case 1:{
+						rtn.type = 'L'; //set the type to inductor
+						rtn.value = rand()%5; //with value 1-5
+						break;
+				}
+				case 2:{
+						rtn.type = 'C'; //set the type to capacitor
+						rtn.value = rand()%5+1; //with value 1-5
+						break;
+				}
+				case 3:{
+						rtn.type = '&'; //set the type to parallel
+						int forRndP = rand()%3;
+						for(int i=-2;i<forRndP;i++){
+								rtn.parts.push_back(createSubNetwork(false)); //add 2-3 subnetworks
+						}
+						break;
+				}
+				case 4:{
+						rtn.type = '|'; //set the type to series
+						int forRndS = rand()%3;
+						for(int i=-2;i<forRndS;i++){
+								rtn.parts.push_back(createSubNetwork(false)); //add 2-3 subnetworks
+						}
+						break;
+				}
+		}
+		return rtn;
+}
+
 vector<Network> create_test_networks()
 {
-    return {
-        R(1),
-        C(1),
-        L(1)
-        // TODO Make sure there are at least ten test-cases
-    };
+		vector<Network> rtn;
+		for(int i=0;i<100;i++){
+				rtn.push_back(createSubNetwork(true)); //add 100 random networks to the return vector
+		}
+		return rtn;
 }
