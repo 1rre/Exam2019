@@ -79,8 +79,21 @@ Network flatten(const Network &x){
 		return chX;
 }
 
-vector<Network> sort(const vector<Network> &x){ //TODO: implement sort
-		return x;
+vector<Network> sort(const vector<Network> &x){ //basic bubble sort, TODO: test when < implemented
+		bool sorted = false;
+		vector<Network> xMod = x;
+		while(!sorted){
+				sorted = true;
+				for(int i = 0; i < xMod.size() - 1; i++){
+						if(xMod[i+1] < xMod[i]){
+								Network temp = xMod[i];
+								xMod[i]=xMod[i+1];
+								xMod[i+1] = temp;
+								sorted = false;
+						}
+				}
+		}
+		return xMod;
 }
 
 Network canonicalise(const Network &x)
