@@ -23,13 +23,13 @@ int tree_size(const tree_node *node)
 int tree_height(const tree_node *node)
 {
     int rtn = 1;
-		if(node->left =! nullptr){
-				rtn += tree_height(tree->left);
+		if(node->left != nullptr){
+				rtn += tree_height(node->left);
 		}
 		if(node ->right != nullptr){
-				rtn += tree_height(tree->right);
+				rtn += tree_height(node->right);
 		}
-    return 0;
+    return rtn;
 }
 
 float tree_balance(const tree_node *node)
