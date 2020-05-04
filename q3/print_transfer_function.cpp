@@ -18,7 +18,6 @@ int main(int argc, char **argv)
 
     Network n1, n2;
     cin >> n1 >> n2;
-
     vector<float> omega=make_log10_space(a, b, n);
     vector<complex<float>> H=transfer_function(n1, n2, omega);
 
