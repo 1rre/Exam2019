@@ -69,11 +69,11 @@ string buildOutput(const Network &n){
 		return outMessage; //return the built output
 }
 
-Network createSubNetwork(bool b){
+Network createSubNetwork(int b){
 		Network rtn;
 		srand(time(nullptr));
 		int rnd;
-		if(b){
+		if(b==0){
 				rnd = rand()%5;
 		}
 		else{
@@ -99,7 +99,7 @@ Network createSubNetwork(bool b){
 						rtn.type = '&'; //set the type to parallel
 						int forRndP = rand()%3;
 						for(int i=-2;i<forRndP;i++){
-								rtn.parts.push_back(createSubNetwork(false)); //add 2-5 subnetworks
+								rtn.parts.push_back(createSubNetwork(b-1)); //add 2-5 subnetworks
 						}
 						break;
 				}
@@ -107,7 +107,7 @@ Network createSubNetwork(bool b){
 						rtn.type = '|'; //set the type to series
 						int forRndS = rand()%3;
 						for(int i=-2;i<forRndS;i++){
-								rtn.parts.push_back(createSubNetwork(false)); //add 2-5 subnetworks
+								rtn.parts.push_back(createSubNetwork(b-1)); //add 2-5 subnetworks
 						}
 						break;
 				}
@@ -119,7 +119,7 @@ vector<Network> create_test_networks()
 {
 		vector<Network> rtn;
 		for(int i=0;i<100;i++){
-				rtn.push_back(createSubNetwork(true)); //add 100 random networks to the return vector
+				rtn.push_back(createSubNetwork(5)); //add 100 random networks to the return vector
 		}
 		return rtn;
 }
