@@ -75,15 +75,7 @@ Network operator&(const Network &a, const Network &b)
 {
     return Network{'&', 0, {a,b} };
 }
-/*
-Network operator=(const Network &a){
-		Network b;
-		b.value = a.value;
-		b.parts = a.parts;
-		b.type = a.type;
-		return b;
-}
-*/
+
 bool is_primitive(const Network &a)
 {
     if((a.parts).size()==0){
@@ -98,7 +90,17 @@ bool is_composite(const Network &a)
 }
 
 vector<Network> flatten(const char &nType,const vector<Network> &x){ //TODO: implement flatten
-		
+		vector<Network> parts; //create a modifiable parts list
+		if(nType == '&'||nType == '|'){ //if nType refers to a parallel or series network
+				for(Network n : x){ //for each network in x
+						vector<Network> res = flatten(n.type, n.parts); //flatten n
+						for(Network res1 : res){ //for each element in flattened n
+								parts.push_back(res1); //push it to the back of parts
+						}
+				}
+		}
+		else{
+		}
 }
 
 vector<Network> sort(const vector<Network> &x){ //TODO: implement sort
