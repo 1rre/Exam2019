@@ -35,7 +35,10 @@ Network operator&(const Network &a, const Network &b)
 
 bool is_primitive(const Network &a)
 {
-    return false; // TODO
+    if((a.parts).size()==0){
+				return true; //Return true if the vector of subparts is empty
+		}
+		return false; //Return false otherwise
 }
 
 bool is_composite(const Network &a)
