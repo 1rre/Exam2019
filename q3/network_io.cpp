@@ -99,7 +99,7 @@ Network createSubNetwork(bool b){
 						rtn.type = '&'; //set the type to parallel
 						int forRndP = rand()%3;
 						for(int i=-2;i<forRndP;i++){
-								rtn.parts.push_back(createSubNetwork(false)); //add 2-3 subnetworks
+								rtn.parts.push_back(createSubNetwork(false)); //add 2-5 subnetworks
 						}
 						break;
 				}
@@ -107,7 +107,7 @@ Network createSubNetwork(bool b){
 						rtn.type = '|'; //set the type to series
 						int forRndS = rand()%3;
 						for(int i=-2;i<forRndS;i++){
-								rtn.parts.push_back(createSubNetwork(false)); //add 2-3 subnetworks
+								rtn.parts.push_back(createSubNetwork(false)); //add 2-5 subnetworks
 						}
 						break;
 				}
