@@ -6,11 +6,25 @@ complex<float> impedance(const Network &c, float omega)
         return {c.value, 0};
 
     }else if(c.type=='C'){
-        return {0, -1/(omega*c.value) };
+        return {0, -((float)1)/(omega*c.value) };
 
-    }else{
-        assert(false);
+    }else if (c.type=='L'){
+        return {0, omega*c.value}; //if c is an inductor
     }
+    else if(c.type == '|'){ //if c is a series network
+				complex<float> rtn = {0,0}; //create an empty return float
+				for(Network x : c.parts){ //for each subnetwork in c
+						rtn += impedance(x,omega); //a
+				}
+				return rtn;
+		}
+		else{ //if c is a parallel network
+				complex<float> rtn = {0,0};
+				for(Network x : c.parts){
+						rtn += ((float)1)/(impedance(x,omega));
+				}
+				return ((float)1)/rtn;
+		}
 }
 
 vector<complex<float>> transfer_function(const Network &v1, const Network &v2, const vector<float> &omega)
