@@ -26,9 +26,54 @@ bool operator==(const Network &a, const Network &b)
     return a.parts == b.parts;
 }
 
-bool operator<(const Network &a, const Network &b){ //TODO: Check if parallel networks have value, if not add mechanism for comparing series & parallel networks
-		if(b.type==a.type){
-				return(a.value<b.value);
+bool evaluateNetworkLessThan(const Network &a, const Network &b){
+		if(b.type==a.type&&is_primitive(a)){ //if a and b are both the same type and primitive
+		return(a.value<b.value);
+		}
+		else if(b.type == a.type){ //if a and b are the same type and composite
+				if(a.parts.size()<b.parts.size()){
+						for(int i = 0;i<a.parts.size();i++){
+								if(a.parts[i]<b.parts[i]){
+										return true;
+								}
+								else if(a.parts[i]>b.parts[i]){
+										return false;
+								}
+						}
+						if(a.type == '&'){ //if a has fewer subnetworks than b and they are parallel, however the 1st a.size are equal
+								return false;
+						}
+						else{ //if a has fewer subnetworks than b and they are series, however the 1st a.size are equal
+								return true;
+						}
+				}
+				else if(a.parts.size()>b.parts.size()){
+						for(int i = 0;i<b.parts.size();i++){
+								if(a.parts[i]<b.parts[i]){
+										return true;
+								}
+								else if(a.parts[i]>b.parts[i]){
+										return false;
+								}
+						}
+						if(a.type == '&'){ //if a has more subnetworks than b and they are parallel, however the 1st b.size are equal
+								return true;
+						}
+						else{ //if a has more subnetworks than b and they are series, however the 1st b.size are equal
+								return false;
+						}
+				}
+				else{
+						for(int i = 0;i<b.parts.size();i++){
+								if(a.parts[i]<b.parts[i]){
+										return true;
+								}
+								else if(a.parts[i]>b.parts[i]){
+										return false;
+								}
+						}
+						return false; //if a has the same number of subnetworks as b and they are all equal
+				}
 		}
 		switch(a.type){
 				case '|': //if a is a series network
@@ -62,8 +107,14 @@ bool operator<(const Network &a, const Network &b){ //TODO: Check if parallel ne
 						return true; //return true as a<b
 						break;
 		}
-		cout<<"A or B has an invalid type or value"<<endl;
-		exit(19); //exit with error code 19 if a or b's value or type is invalid
+		return false;
+}
+
+bool operator<(const Network &a, const Network &b){
+		if(b.type==a.type&&is_primitive(a)){ //if a and b are both the same type and primitive
+				return(a.value<b.value);
+		}
+		return evaluateNetworkLessThan(canonicalise(a),canonicalise(b));
 }
 
 Network operator|(const Network &a, const Network &b)
