@@ -22,27 +22,32 @@ int main(int argc, char **argv)
 
     const tree_node *r = s->root();
 
-    cout << "digraph G { "<<endl;
+		cout << "digraph G { "<<endl;
 
-    cout << renderNode(r);
+    string rNode = renderNode(r);
+		
+		rNode.pop_back();
+		cout<<rNode;
 
     cout << "}" << endl;
 }
 
 string renderNode(const tree_node* n){
-		string rtn = "\n";
+		string rtn = "";
 		if(n->left!=nullptr){
 				rtn += ("\""+n->value+"\" -> \""+n->left->value+"\" [label=\"L\"]\n");
 		}
 		if(n->right!=nullptr){
 				rtn += ("\""+n->value+"\" -> \""+n->right->value+"\" [label=\"R\"]\n");
 		}
-				rtn += "\n";
+		if(n->right!=nullptr||n->left!=nullptr){
+				rtn+="\n";
+		}
 		if(n->left!=nullptr){
 				rtn += renderNode(n->left);
 		}
 		if(n->right!=nullptr){
-				rtn += renderNode(n->left);
+				rtn += renderNode(n->right);
 		}
 		return rtn;
 }
