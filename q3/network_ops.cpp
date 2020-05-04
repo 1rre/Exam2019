@@ -99,7 +99,7 @@ vector<Network> flatten(const char &nType,const vector<Network> &x){ //TODO: imp
 						}
 				}
 		}
-		else{
+		else{//TODO: create return for when nType is a primitive
 		}
 }
 

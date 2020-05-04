@@ -7,7 +7,7 @@
 
 ##T2
 
-- [ ] : T2.1
+- [x] : T2.1 (passed test_network_io.cpp)
 - [ ] : T2.2
 
 ##T3
