@@ -22,7 +22,13 @@ int tree_size(const tree_node *node)
 
 int tree_height(const tree_node *node)
 {
-    // TODO
+    int rtn = 1;
+		if(node->left =! nullptr){
+				rtn += tree_height(tree->left);
+		}
+		if(node ->right != nullptr){
+				rtn += tree_height(tree->right);
+		}
     return 0;
 }
 
