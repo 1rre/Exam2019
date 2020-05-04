@@ -124,7 +124,17 @@ void tree_collect_nodes(vector<tree_node*> &nodes, tree_node *root)
 
 void tree_collect_nodes_in_order(vector<tree_node*> &nodes, tree_node *root)
 {
-    
+    if(root->left !=nullptr){
+				tree_collect_nodes_in_order(nodes,root->left);
+		}
+		nodes.push_back(root);
+		if(root->right!=nullptr){
+				tree_collect_nodes_in_order(nodes,root->right);
+		}
+}
+
+void visit_node(){
+		
 }
 
 bool are_nodes_ordered(const vector<tree_node*> &nodes)

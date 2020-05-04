@@ -3,25 +3,10 @@
 
 #include "string_set.hpp"
 
-struct UnbalancedStringSet
+class UnbalancedStringSet
     : public StringSet
 {
-    tree_node *m_root;
-    int m_size;
-    int m_added;
-
-    UnbalancedStringSet()
-    {
-        m_root=nullptr;
-        m_size=0;
-        m_added=0;
-    }
-
-    ~UnbalancedStringSet() override
-    {
-        tree_free(m_root);
-    }
-
+public:
     void insert(const string &x) override
     {
         m_root = tree_insert(m_root, x);
@@ -31,7 +16,6 @@ struct UnbalancedStringSet
             optimise();
         }
     }
-
     bool contains(const string &x) const override
     {
         return tree_contains(m_root, x);
@@ -41,11 +25,25 @@ struct UnbalancedStringSet
     {
         // Does nothing for this class
     }
-
-    const tree_node *root() const
+		UnbalancedStringSet()
+    {
+        m_root=nullptr;
+        m_size=0;
+        m_added=0;
+    }
+    ~UnbalancedStringSet() override
+    {
+        tree_free(m_root);
+    }
+		const tree_node *root() const
     {
         return m_root;
     }
+
+protected:
+    tree_node *m_root;
+    int m_size;
+    int m_added;
 };
 
 #endif
