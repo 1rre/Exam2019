@@ -9,9 +9,9 @@
           n2
           |
           |
-				_____
-				 ___
-				  _
+        _____
+         ___
+          _
 ```
 'make_log_space(0.1,100,3)' is stated as having output [0.1, 10, 100] in readme.html. As these are not evenly spaced logarithmically (log10s are -[-1, 1, 2]) I have disregarded this example and assumed that 'make_log_space(0.1,100,3)' resolves to [0.1, 3.16228, 100] (T3.3)
 'print_transfer_function.cpp' appaears to have already been implemented (T3.4)
