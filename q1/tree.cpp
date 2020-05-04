@@ -37,6 +37,7 @@ float tree_balance(const tree_node *node)
 {
     float rtn = (float)0;
 		int h = tree_height(node);
+		cout<<"h= "<<h<<endl;
 		int n = tree_size(node);
 		int h_opt = (int)log2(n)+1;
 		rtn = ((float)h/(float)((h_opt)-1))/((float)n/(float)(h_opt-1));

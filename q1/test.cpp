@@ -1,17 +1,34 @@
 #include "tree.hpp"
 #include <stack>
 
+void nodeInsert(tree_node *a,tree_node *n);
+
 int main(int argc, char* argv[]){
-		tree_node *a = new tree_node;
-		tree_node *b = new tree_node;
-		tree_node *c = new tree_node;
-		tree_node *d = new tree_node;
-		a->value = 5;
-		b->value = 3;
-		c->value = 6;
-		d->value = 9;
-		a->left = b;
-		b->left = c;
-		b->right = d;
-		cout<<tree_balance(a);
+		tree_node *a = new tree_node; //1
+		cin>>a->value;
+		while(cin){
+				tree_node *n = new tree_node;
+				cin>> n->value;
+				nodeInsert(a,n);
+		}
+		cout<<tree_balance(a)<<endl;
+}
+
+void nodeInsert(tree_node *a,tree_node *n){
+		if(a->value>n->value){
+				if(a->left==nullptr){
+						a->left=n;
+				}
+				else{
+						nodeInsert(a->left,n);
+				}
+		}
+		else{
+				if(a->right==nullptr){
+						a->right = n;
+				}
+				else{
+						nodeInsert(a->right,n);
+				}
+		}
 }
