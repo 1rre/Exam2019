@@ -1,0 +1,26 @@
+digraph G { 
+"f" -> "a" [label="L"]
+"f" -> "g" [label="R"]
+
+"a" -> "b" [label="R"]
+
+"b" -> "c" [label="R"]
+
+"c" -> "d" [label="R"]
+
+"d" -> "e" [label="R"]
+
+"g" -> "h" [label="R"]
+
+"h" -> "i" [label="R"]
+
+"i" -> "j" [label="R"]
+
+"j" -> "k" [label="R"]
+
+"k" -> "l" [label="R"]
+
+"l" -> "m" [label="R"]
+
+"m" -> "n" [label="R"]
+}

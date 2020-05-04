@@ -17,7 +17,6 @@ int main(int argc, char **argv)
     while( cin >> v ){
         s->insert(v);
     }
-
     s->optimise();
 
     const tree_node *r = s->root();
