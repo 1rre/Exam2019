@@ -26,7 +26,7 @@ bool operator==(const Network &a, const Network &b)
     return a.parts == b.parts;
 }
 
-bool operator<(const Network &a, const Network &b){
+bool operator<(const Network &a, const Network &b){ //TODO: Check if parallel networks have value, if not add mechanism for comparing series & parallel networks
 		if(b.type==a.type){
 				return(a.value<b.value);
 		}
@@ -97,14 +97,13 @@ bool is_composite(const Network &a)
     return !is_primitive(a);
 }
 
-vector<Network> flatten(const char &nType,const vector<Network> &parts){ //TODO: implement flatten
-		vector<Network> _;
-		return _;
+vector<Network> flatten(const char &nType,const vector<Network> &x){ //TODO: implement flatten
+		
 }
 
-vector<Network> sort(const vector<Network> &parts){ //TODO: implement sort
-		vector<Network> _;
-		return _;
+vector<Network> sort(const vector<Network> &x){ //TODO: implement sort
+		vector<Network> parts;
+		return parts;
 }
 
 Network canonicalise(const Network &x)
