@@ -22,20 +22,25 @@ int tree_size(const tree_node *node)
 
 int tree_height(const tree_node *node)
 {
-    int rtn = 1;
-		if(node->left != nullptr){
-				rtn += tree_height(node->left);
+    int hL = 1; //height of left branch = 1
+		int hR = 1; //height of right branch = 1
+		if(node->left != nullptr){ //if the left branch is not null
+				hL += tree_height(node->left); //add the height of the left branch to the running total
 		}
-		if(node ->right != nullptr){
-				rtn += tree_height(node->right);
+		if(node ->right != nullptr){ //if the right branch is not null
+				hR += tree_height(node->right); //add the height of the right branch to the running total
 		}
-    return rtn;
+    return max(hL,hR); //return the height of the larger of the 2 branches
 }
 
 float tree_balance(const tree_node *node)
 {
-    // TODO
-    return 0;
+    float rtn = (float)0;
+		int h = tree_height(node);
+		int n = tree_size(node);
+		int h_opt = (int)log2(n)+1;
+		rtn = ((float)h/(float)((h_opt)-1))/((float)n/(float)(h_opt-1));
+    return rtn;
 }
 
 bool tree_contains(const tree_node *root, const string &value)

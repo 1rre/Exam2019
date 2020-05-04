@@ -13,5 +13,5 @@ int main(int argc, char* argv[]){
 		a->left = b;
 		b->left = c;
 		b->right = d;
-		cout<<tree_height(a);
+		cout<<tree_balance(a);
 }
